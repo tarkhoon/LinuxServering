@@ -51,16 +51,19 @@ jobs:
          tags: ${{ steps.meta.outputs.tags }}
          labels: ${{ steps.meta.outputs.labels }}
  conn:
-   name: connect
-   uses: appleboy/ssh-action@v1.2.1
-   with:
-     host: ${{ secrets.CON }}
-     username: yc-user
-     key: ${{ secrets.SSH }}
-     passphrase: 123
-     script: |
-       cd /home/yc-user/test_cicd/
-       docker pull ghcr.io/tarkhoon/linuxservering:main
-       docker compose down
-       docker compose up -d
+   name: Conn
+   runs-on: ubuntu-latest
+   steps:
+     - name: connect
+       uses: appleboy/ssh-action@v1.2.1
+       with:
+         host: ${{ secrets.CON }}
+         username: yc-user
+         key: ${{ secrets.SSH }}
+         passphrase: 123
+         script: |
+           cd /home/yc-user/test_cicd/
+           docker pull ghcr.io/tarkhoon/linuxservering:main
+           docker compose down
+           docker compose up -d
 
