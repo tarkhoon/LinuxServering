@@ -57,7 +57,7 @@ jobs:
      - name: connect
        uses: appleboy/ssh-action@v1.2.1
        with:
-         host: ${{ secrets.CON }}
+         host: ${{ secrets.CONT }}
          username: yc-user
          key: ${{ secrets.SSH }}
          passphrase: 123
